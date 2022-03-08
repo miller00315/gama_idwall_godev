@@ -46,4 +46,11 @@ cars.removeAll()
 
 print(cars)
 
+print(cars[1])
 
+
+var otherCars: [String] = ["Ferrari", "BMW"]
+
+print(otherCars)
+
+typealias otherTypes = String
