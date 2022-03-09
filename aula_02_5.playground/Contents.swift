@@ -29,7 +29,11 @@ var stack = Stack()
 
 stack.push("Ola mundo")
 
+stack.showValues()
+
 stack.push("novo")
+
+stack.showValues()
 
 stack.push("terceiro")
 
