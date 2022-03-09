@@ -18,21 +18,21 @@ class Stack {
     }
 }
 
-var pilha = Stack()
+var stack = Stack()
 
 
-pilha.push("Ola mundo")
+stack.push("Ola mundo")
 
-pilha.push("novo")
+stack.push("novo")
 
-pilha.push("terceiro")
+stack.push("terceiro")
 
-pilha.showValues()
+stack.showValues()
 
-pilha.pop()
+stack.pop()
 
-pilha.showValues()
+stack.showValues()
 
-pilha.pop()
+stack.pop()
 
-pilha.showValues()
+stack.showValues()
