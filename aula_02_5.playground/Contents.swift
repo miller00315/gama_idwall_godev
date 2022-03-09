@@ -4,12 +4,12 @@ class Stack {
     private var _stack: [String] = []
 
     func push (_ value: String) {
-        _stack.insert(value, at: 0)
+        _stack.append(value)
     }
 
     func pop () {
         if(!_stack.isEmpty) {
-            _stack.remove(at: 0)
+            _stack.removeLast()
         }
     }
 
