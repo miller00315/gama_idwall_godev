@@ -1,33 +1,38 @@
 import UIKit
 
-var pilha: [String] = []
+class Stack {
+    private var _stack: [String] = []
 
-func push (_ value: String) {
-    pilha.insert(value, at: 0)
-}
+    func push (_ value: String) {
+        _stack.insert(value, at: 0)
+    }
 
-func pop () {
-    if(!pilha.isEmpty) {
-        pilha.remove(at: 0)
+    func pop () {
+        if(!_stack.isEmpty) {
+            _stack.remove(at: 0)
+        }
+    }
+
+    func showValues() {
+        print(_stack)
     }
 }
 
-func showValues() {
-    print(pilha)
-}
+var pilha = Stack()
 
-push("Ola mundo")
 
-push("novo")
+pilha.push("Ola mundo")
 
-push("terceiro")
+pilha.push("novo")
 
-showValues()
+pilha.push("terceiro")
 
-pop()
+pilha.showValues()
 
-showValues()
+pilha.pop()
 
-pop()
+pilha.showValues()
 
-showValues()
+pilha.pop()
+
+pilha.showValues()
