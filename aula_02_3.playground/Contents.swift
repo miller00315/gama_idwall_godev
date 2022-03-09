@@ -39,3 +39,36 @@ let person = getPerson(name: "Miller", lastName: "Oliveira", age: 12)
 print(person)
 
 print(person.0, person.1, person.2)
+
+/*
+ Clousure
+ */
+
+func makeBuy(value: Int, onCompletion: (Int) -> Void) {
+    onCompletion(value)
+}
+
+makeBuy(value: 50) {res in print("res: \(res)")}
+
+typealias OnCompletion = (String) -> Void // Type alias para uma funcao
+typealias OnCompletionError = (String) -> Void // Type alias para uma funcao
+
+
+func makeBuy(success: Bool, onCompletion: OnCompletion, onCompletionError: OnCompletionError) {
+    if(success) {
+        onCompletion("success")
+    } else {
+        onCompletionError("Error")
+    }
+}
+
+makeBuy(success: true) {success in
+    print(success)
+} onCompletionError: {error in
+    print(error)
+}
+
+
+
+
+
