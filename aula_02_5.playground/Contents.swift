@@ -12,6 +12,12 @@ class Stack {
             _stack.removeLast()
         }
     }
+    
+    func clear() {
+        if(!_stack.isEmpty) {
+            _stack.removeAll()
+        }
+    }
 
     func showValues() {
         print(_stack)
@@ -34,5 +40,9 @@ stack.pop()
 stack.showValues()
 
 stack.pop()
+
+stack.showValues()
+
+stack.clear()
 
 stack.showValues()
