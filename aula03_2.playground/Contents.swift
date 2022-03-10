@@ -105,6 +105,10 @@ let notasReduce = alunosNota.reduce(0) { partialResult, value in
 
 print(notasReduce)
 
+let notasReduceReduzido = alunosNota.reduce(0, {$0 + $1})
+
+print(notasReduceReduzido)
+
 
 
 
