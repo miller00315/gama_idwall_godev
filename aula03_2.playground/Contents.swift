@@ -109,6 +109,10 @@ let notasReduceReduzido = alunosNota.reduce(0, {$0 + $1})
 
 print(notasReduceReduzido)
 
+let reduceMoreSimple = alunosNota.reduce(0, +)
+
+print(reduceMoreSimple)
+
 
 
 
