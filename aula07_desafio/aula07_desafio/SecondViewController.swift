@@ -9,6 +9,8 @@ import UIKit
 
 class SecondViewController: UIViewController {
     
+    static var identifier = "SecondViewController"
+    
     var user: User?
 
     @IBOutlet weak var nameLabel: UILabel!
@@ -22,6 +24,7 @@ class SecondViewController: UIViewController {
     }
     
     func setup(user: User) {
+        
         self.user = user
     }
     

@@ -49,7 +49,6 @@ extension ViewController: UITableViewDelegate {
         let user = users[indexPath.row]
         
         performSegue(withIdentifier: "secondViewIdentifier", sender: user)
-        print("Aqui")
     }
 }
 
@@ -69,4 +68,3 @@ extension ViewController: UITableViewDataSource {
     
     
 }
-
