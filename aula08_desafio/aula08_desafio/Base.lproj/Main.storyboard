@@ -153,7 +153,7 @@
                                 <rect key="frame" x="0.0" y="320" width="414" height="120.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnV-nJ-zaV">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="Rcz-19-9Qn"/>
                                         </constraints>
@@ -162,7 +162,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJ3-9d-NTu">
-                                        <rect key="frame" x="0.0" y="20.5" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="100" width="414" height="20.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="umJ-Tx-YMa"/>
                                         </constraints>
