@@ -20,7 +20,7 @@ protocol managedSaveProtocol {
 }
 
 protocol managedDeleteProtocol {
-    func Delete(id: UUID, onCompletionHandler: OnCompletionHandler)
+    func Delete(uuid: String, onCompletionHandler: OnCompletionHandler)
 }
 
 protocol managedUpdateProtocol {
@@ -33,7 +33,13 @@ class ManagedObjectContext:
         managedDeleteProtocol,
         managedUpdateProtocol {
     
-    private let entity = "Uses"
+    private let entity = "Users"
+    
+    static var shared: ManagedObjectContext = {
+        let instance = ManagedObjectContext()
+        
+        return instance
+    }()
     
     func getContext() -> NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -42,6 +48,27 @@ class ManagedObjectContext:
     }
     
     func Save(person: Person, onCompletionHandler: OnCompletionHandler) {
+        
+        let context  = getContext()
+        
+        guard let entity = NSEntityDescription.entity(forEntityName: entity, in: context)
+            else { return }
+        
+        let transaction = NSManagedObject(entity: entity, insertInto: context)
+        
+        transaction.setValue(person.id, forKey: "id")
+        transaction.setValue(person.name, forKey: "name")
+        transaction.setValue(person.lastName, forKey: "lastName")
+        transaction.setValue(person.age, forKey: "age")
+        
+        do {
+            try context.save()
+            
+            onCompletionHandler("Save success")
+            
+        } catch let error as NSError {
+            print("Could not save \(error.localizedDescription)")
+        }
         
     }
     
@@ -74,8 +101,30 @@ class ManagedObjectContext:
         return listPerson
     }
     
-    func Delete(id: UUID, onCompletionHandler: OnCompletionHandler) {
+    func Delete(uuid: String, onCompletionHandler: OnCompletionHandler) {
+        let context = getContext()
         
+        let predicate = NSPredicate(format: "id == %@", "\(uuid)")
+        
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entity)
+        
+        fetchRequest.predicate = predicate
+        
+        do {
+            
+            let fetchResults = try context.fetch(fetchRequest) as! [NSManagedObject]
+            
+            if let enetityDelete = fetchResults.first {
+                context.delete(enetityDelete)
+            }
+            
+            try context.save()
+            
+            onCompletionHandler("Delete success")
+            
+        } catch let error as NSError {
+            print("Fetch faile: \(error.localizedDescription)")
+        }
     }
     
     func Update(person: Person, onCompletionHandler: OnCompletionHandler) {
