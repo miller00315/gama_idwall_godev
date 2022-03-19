@@ -11,10 +11,14 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var albumsTableView: UITableView!
     
-    lazy var trackList = [Track]() {
+    @IBOutlet weak var homeActivityIndicator: UIActivityIndicatorView!
+    
+    lazy var trackList = [MusicTrack]() {
         didSet {
             DispatchQueue.main.async {
                 self.albumsTableView.reloadData()
+                
+                self.hideLoading()
             }
         }
     }
@@ -25,20 +29,21 @@ class HomeViewController: UIViewController {
         delegates()
         getTracks()
         registerCell()
+        showLoader()
         
         title = "Home"
         // Do any additional setup after loading the view.
+    }
+
+    private func delegates() {
+        albumsTableView.delegate = self
+        albumsTableView.dataSource = self
     }
     
     private func registerCell() {
         let nib = UINib(nibName: AlbumTableViewCell.identifier, bundle: nil)
         
         albumsTableView.register(nib, forCellReuseIdentifier: AlbumTableViewCell.identifier)
-    }
-    
-    private func delegates() {
-        albumsTableView.delegate = self
-        albumsTableView.dataSource = self
     }
     
     private func getTracks() {
@@ -51,12 +56,48 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
+    private func showLoader() {
+        homeActivityIndicator.startAnimating()
+        
+        homeActivityIndicator.isHidden = false
+    }
+    
+    private func hideLoading() {
+        DispatchQueue.main.async {
+            self.homeActivityIndicator.stopAnimating()
+            
+            self.homeActivityIndicator.isHidden = true
+        }
+    }
+    
+    func alertSuccess() {}
+    
+    func alertError(_ error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { result in
+            print("Erro")
+        }))
+        
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let musicTrack = trackList[indexPath.row]
         
+        ManagedObjectContext.shared.save(track: musicTrack) { result in
+            switch result {
+            case .Success:
+                print("Salvo")
+                break
+            case .Error(let error):
+                alertError(error)
+            }
+        }
     }
 }
 
@@ -75,7 +116,7 @@ extension HomeViewController: UITableViewDataSource {
         
         cell.setup(albumName: track.collectionName!,
                    trackName: track.trackName!,
-                   imageUrl: track.artworkUrl30!)
+                   imageUrl: track.artworkUrl100!)
         
         return cell
     }

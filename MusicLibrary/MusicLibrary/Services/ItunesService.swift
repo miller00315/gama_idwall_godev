@@ -15,14 +15,14 @@ enum AlbumError: Error {
 }
 
 protocol ServicesProtocol {
-    func getTracks(completion: @escaping(Result<[Track], AlbumError>) -> Void)
+    func getTracks(completion: @escaping(Result<[MusicTrack], AlbumError>) -> Void)
 }
 
 class ItunesService: ServicesProtocol {
     
     let session = URLSession.shared
     
-    let url = "https://itunes.apple.com/search?media=music&term=eminem&limit=4"
+    let url = "https://itunes.apple.com/search?media=music&term=eminem&limit=20"
     
     // Singleton pattern
     static var shared: ItunesService = {
@@ -31,7 +31,7 @@ class ItunesService: ServicesProtocol {
     }()
     
     // That function will be used to fetch data from Itunes
-    func getTracks(completion: @escaping(Result<[Track], AlbumError>) -> Void) {
+    func getTracks(completion: @escaping(Result<[MusicTrack], AlbumError>) -> Void) {
         
         // verify if is a valid url
         guard let url = URL(string: url) else { return completion(.failure(.urlInvalid)) }
@@ -44,8 +44,6 @@ class ItunesService: ServicesProtocol {
                 guard let jsonData = data else { return completion(.failure(.noDataAvailable)) }
                 
                 let decoder = JSONDecoder()
-                
-                print(jsonData)
                 
                 let album =  try decoder.decode(Album.self, from: jsonData)
                 

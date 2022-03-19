@@ -7,7 +7,8 @@
 
 import Foundation
 
+
 struct Album: Codable {
-    let resultCount: Int?
-    let results: [Track]?
+    let resultsCount: Int?
+    let results: [MusicTrack]?
 }

@@ -28,8 +28,7 @@ class AlbumTableViewCell: UITableViewCell {
     
     func setup(albumName: String, trackName: String, imageUrl: String) {
         
-        print(imageUrl)
-    
+        albumPictureImageView.loadImage(from: imageUrl)
         albumNameLabel.text = albumName
         trackNameLabel.text = trackName
     }
