@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class CustomTableViewCell: UITableViewCell {
 
     static let identifier = "CustomTableViewCell"
@@ -25,12 +26,12 @@ class CustomTableViewCell: UITableViewCell {
         picture.layer.masksToBounds = true
     }
     
-    func setup(pictureUrl: String, title: String, content: String) {
-        picture.loadImage(from: pictureUrl)
+    func setup(with person: Person) {
+        picture.loadImage(from: person.photo)
         
-        titleLabel.text = title
+        titleLabel.text = person.name
         
-        contentLabel.text = content
+        contentLabel.text = person.company.name
     }
     
 }

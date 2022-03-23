@@ -100,9 +100,7 @@ extension HomeViewController: UITableViewDataSource {
         
         let person = personList[indexPath.row]
         
-        cell.setup(pictureUrl: person.photo,
-                   title: person.name,
-                   content: person.company.name)
+        cell.setup(with: person)
         
         return cell
     }
