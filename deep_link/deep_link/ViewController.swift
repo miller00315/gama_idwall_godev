@@ -9,6 +9,11 @@ import UIKit
 import MessageUI
 
 class ViewController: UIViewController {
+    private enum defaults {
+        static let textInfo = "Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like);",
+        titleButton = "Call action",
+        descriptionInfo = "Description"
+    }
     
     var safeArea: UILayoutGuide!
     
@@ -25,14 +30,11 @@ class ViewController: UIViewController {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         
-        label.textColor = .red
+        label.textColor = .white
         
         label.numberOfLines = 0
         
-        label.text = """
-            Why do we use it?
-            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like);
-        """
+        label.text = defaults.textInfo
         
         label.font = UIFont.systemFont(ofSize: 13)
         
@@ -43,40 +45,138 @@ class ViewController: UIViewController {
         return label
     }()
     
+    lazy var callButton: UIButton = {
+        let button = UIButton(type: .custom)
+        
+        button.setTitle(defaults.titleButton, for: .normal)
+        button.backgroundColor = .brown
+        button.tintColor = .white
+        
+        button.addTarget(self, action: #selector(getView), for: .touchUpInside)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    lazy var content: UIView = {
+        let view = UIView()
+        
+        view.backgroundColor = .red
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    lazy var descriptionLAbel: UILabel = {
+        let label = UILabel()
+        
+        label.font = UIFont.systemFont(ofSize: 15)
+        
+        label.textColor = .white
+        
+        label.text = "Center label"
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
     var button: UIButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // button.setTitle("Botao", for: .normal)
+        addSubViews()
+        configureIconImageView()
+        configureCallActionButton()
+        configureContent()
+        configureDescription()
         
-       // button.frame = CGRect(x: 0, y: 0, width: 130, height: 45)
         
+        
+      //  view.addSubview(button)
+        
+        
+        
+        let paragraphStyles = NSMutableParagraphStyle()
+        
+        paragraphStyles.alignment = NSTextAlignment.justified
+        
+        titleLabel.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: 10).isActive = true
+        
+        titleLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Metrics.Margin.default).isActive = true
+        
+        titleLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16).isActive = true
+        
+        //button.setTitle("Botao", for: .normal)
+         
+        //button.frame = CGRect(x: titleLabel.frame.minX, y: 0, width: 130, height: 45)
+         
        // button.backgroundColor = .brown
         
-       // view.addSubview(button)
         
-        safeArea = view.layoutMarginsGuide
         
-        view.addSubview(icon)
-        view.addSubview(titleLabel)
         
+        
+        title = defaults.descriptionInfo
+        
+        view.backgroundColor = .backgroundViewCode
+    }
+    
+    
+    // MARK: - Métodos privados
+    private func configureIconImageView() {
         NSLayoutConstraint.activate([
             icon.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 10),
             icon.heightAnchor.constraint(equalToConstant: 80),
             icon.widthAnchor.constraint(equalToConstant: 80),
             icon.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+    
+    private func configureCallActionButton() {
+        NSLayoutConstraint.activate([
+            callButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Metrics.Margin.default),
+            callButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Metrics.Margin.default),
+            callButton.heightAnchor.constraint(equalToConstant: Metrics.Margin.input),
+            callButton.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Metrics.Margin.default),
+            callButton.widthAnchor.constraint(equalToConstant: 100)
+        ])
         
-        titleLabel.topAnchor.constraint(equalTo: icon.bottomAnchor, constant: 10).isActive = true
+    }
+    
+    private func configureContent() {
+        NSLayoutConstraint.activate([
+            content.topAnchor.constraint(equalTo: callButton.bottomAnchor, constant: 20),
+            content.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Metrics.Margin.default),
+            content.heightAnchor.constraint(equalToConstant: 130),
+            content.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -Metrics.Margin.default)
+        ])
         
-        titleLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16).isActive = true
+    }
+    
+    private func configureDescription() {
+        NSLayoutConstraint.activate([
+            descriptionLAbel.centerXAnchor.constraint(equalTo: content.centerXAnchor),
+            
+            descriptionLAbel.centerYAnchor.constraint(equalTo: content.centerYAnchor)
+        ])
+    }
+    
+    private func addSubViews() {
+        safeArea = view.layoutMarginsGuide
         
-        titleLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16).isActive = true
-        
-        title="App navi"
-        
-        view.backgroundColor = .systemIndigo
+        view.addSubview(icon)
+        view.addSubview(titleLabel)
+        view.addSubview(callButton)
+        view.addSubview(content)
+        content.addSubview(descriptionLAbel)
+    }
+    
+    @objc func getView() {
+        print("Opa cliquei aqui")
     }
 
     @IBAction func getFacebook() {
