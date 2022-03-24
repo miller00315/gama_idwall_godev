@@ -20,6 +20,20 @@ class ViewController: UIViewController {
         
         return imageView
     }()
+    
+    lazy var appName: UILabel = {
+        let label = UILabel()
+        
+        label.font = UIFont.systemFont(ofSize: 20)
+        
+        label.textColor = .white
+        
+        label.text = "Show app"
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +62,8 @@ class ViewController: UIViewController {
             icon.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
+    
+    
 
 
 }
