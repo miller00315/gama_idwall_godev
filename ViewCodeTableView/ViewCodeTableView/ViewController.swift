@@ -16,6 +16,20 @@ class ViewController: UIViewController {
         
         return table
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let appearence = UINavigationBarAppearance()
+        
+        appearence.backgroundColor = .purple
+        appearence.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearence.largeTitleTextAttributes = [.foregroundColor:UIColor.white]
+        
+        navigationController?.navigationBar.standardAppearance = appearence
+        navigationController?.navigationBar.compactAppearance = appearence
+        navigationController?.navigationBar.scrollEdgeAppearance = appearence
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
