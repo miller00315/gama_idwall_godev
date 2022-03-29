@@ -58,36 +58,36 @@ class ViewController: UIViewController {
     private func setNavibar() {
         navigationController?.navigationBar.prefersLargeTitles = true
                
-               let appearence = UINavigationBarAppearance()
-               
-               appearence.backgroundColor = .systemGreen
-               appearence.titleTextAttributes = [.foregroundColor: UIColor.white]
-               appearence.largeTitleTextAttributes = [.foregroundColor:UIColor.white]
-               
-               navigationController?.navigationBar.standardAppearance = appearence
-               navigationController?.navigationBar.compactAppearance = appearence
-               navigationController?.navigationBar.scrollEdgeAppearance = appearence
-               
-               navigationItem.backBarButtonItem = UIBarButtonItem(
-                   title: "", style: .plain, target: nil, action: nil
-               )
-               
+           let appearence = UINavigationBarAppearance()
+           
+           appearence.backgroundColor = .white
+           appearence.titleTextAttributes = [.foregroundColor: UIColor.black]
+           appearence.largeTitleTextAttributes = [.foregroundColor:UIColor.black]
+           
+           navigationController?.navigationBar.standardAppearance = appearence
+           navigationController?.navigationBar.compactAppearance = appearence
+           navigationController?.navigationBar.scrollEdgeAppearance = appearence
+           
+           navigationItem.backBarButtonItem = UIBarButtonItem(
+               title: "", style: .plain, target: nil, action: nil
+           )
+           
        navigationController?.navigationBar.prefersLargeTitles = true
        
        let updateButton = UIBarButtonItem(image: UIImage.init(systemName: "arrow.clockwise"), style: .plain, target: self, action: #selector(updateAction))
                
-        updateButton.tintColor = .white
+        updateButton.tintColor = .black
                
-        let forwardButton = UIBarButtonItem(image: UIImage.init(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(forwardAction))
+        let forwardButton = UIBarButtonItem(image: UIImage.init(systemName: "chevron.right"), style: .plain, target: self, action: #selector(forwardAction))
        
-        forwardButton.tintColor = .white
+        forwardButton.tintColor = .black
         
-        let backButton = UIBarButtonItem(image: UIImage.init(systemName: "chevron.right"), style: .plain, target: self, action: #selector(backAction))
+        let backButton = UIBarButtonItem(image: UIImage.init(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backAction))
         
-         backButton.tintColor = .white
+        backButton.tintColor = .black
        
        navigationItem.leftBarButtonItem = updateButton
-       navigationItem.rightBarButtonItems = [backButton, forwardButton]
+       navigationItem.rightBarButtonItems = [forwardButton, backButton]
     }
     
     private func setupWebView() {
@@ -108,13 +108,20 @@ class ViewController: UIViewController {
         view.addSubview(searchBar)
         view.addSubview(webView)
         
+        configureSearchBar()
+        configureWebView()
+    }
+    
+    private func configureSearchBar() {
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             searchBar.heightAnchor.constraint(equalToConstant: 45)
         ])
-        
+    }
+    
+    private func configureWebView() {
         NSLayoutConstraint.activate([
             webView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             webView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
