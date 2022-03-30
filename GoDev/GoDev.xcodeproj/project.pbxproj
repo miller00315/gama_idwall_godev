@@ -19,6 +19,7 @@
 		2AC8E90A27F3C5D400F61C1A /* GoDevButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8E90927F3C5D400F61C1A /* GoDevButton.swift */; };
 		2AC8E90C27F3C65F00F61C1A /* GoDev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC8E8D527F3C2F900F61C1A /* GoDev.framework */; platformFilter = ios; };
 		2AC8E90D27F3C65F00F61C1A /* GoDev.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2AC8E8D527F3C2F900F61C1A /* GoDev.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2AC8E91327F3D2AA00F61C1A /* GoDevView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8E91227F3D2AA00F61C1A /* GoDevView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		2AC8E90127F3C42A00F61C1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AC8E90327F3C42A00F61C1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AC8E90927F3C5D400F61C1A /* GoDevButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoDevButton.swift; sourceTree = "<group>"; };
+		2AC8E91227F3D2AA00F61C1A /* GoDevView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoDevView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 		2AC8E90727F3C59E00F61C1A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2AC8E91127F3D29200F61C1A /* GoDevView */,
 				2AC8E90827F3C5B400F61C1A /* Buttons */,
 			);
 			path = Components;
@@ -168,6 +171,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2AC8E91127F3D29200F61C1A /* GoDevView */ = {
+			isa = PBXGroup;
+			children = (
+				2AC8E91227F3D2AA00F61C1A /* GoDevView.swift */,
+			);
+			path = GoDevView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AC8E91327F3D2AA00F61C1A /* GoDevView.swift in Sources */,
 				2AC8E8DA27F3C2F900F61C1A /* GoDev.docc in Sources */,
 				2AC8E90A27F3C5D400F61C1A /* GoDevButton.swift in Sources */,
 			);
