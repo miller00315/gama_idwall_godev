@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         return button
     } ()
     
-    lazy var contet: GoDevView = {
+    lazy var content: GoDevView = {
         let view = GoDevView(bg: .red)
         
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         title = "Home"
         
         view.addSubview(button)
-        view.addSubview(contet)
+        view.addSubview(content)
         
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -46,10 +46,10 @@ class ViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            contet.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            contet.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            contet.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            contet.heightAnchor.constraint(equalToConstant: 200)
+            content.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            content.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            content.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            content.heightAnchor.constraint(equalToConstant: 200)
         ])
     }
 }
